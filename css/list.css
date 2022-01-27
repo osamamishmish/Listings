@@ -60,6 +60,10 @@ footer{
     background-color: darkcyan;
     color:lightcyan;
 }
+h4:hover{
+      color:darkcyan;
+      cursor:pointer;
+}
 @media (max-width:768px){
     .list{
         height:fit-content;

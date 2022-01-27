@@ -1,13 +1,3 @@
-/*$(".up button").eq(0).css({
-    "backgroundColor":"darkcyan",
-    "color":"lightcyan",
-    "borderRadius":"10px",
-})
-$(".up button").eq(1).css({
-    "backgroundColor":"black",
-    "color":"white",
-    "borderRadius":"10px",
-})*/
 var listContent=[
             {
                 image:"imgs/photosnap.svg",
@@ -96,7 +86,7 @@ var listContent=[
 
 
 
-
+//Build the lists
 $(document).ready(function(){
         "use strict";
         for (let index=0 ;index<listContent.length; index++){
@@ -108,7 +98,6 @@ $(document).ready(function(){
             theUpperData=document.createElement("div"),
             theMiddleData=document.createElement("div"),
             theLowerData=document.createElement("div"),
-            
             theImage=document.createElement("img"),
             theTitle=document.createElement("h4"),
             theName=document.createElement("p"),
@@ -122,12 +111,22 @@ $(theUpperData).appendTo(theDataContainer).addClass("up align-items-start");
 $(theName).appendTo(theUpperData).text(listContent[index].name);
         for(let i=0; i<listContent[index].signs.length;i++){
             var theButton=document.createElement("button"); 
-$(theButton).appendTo(theUpperData).text(listContent[index].signs[i]);
+$(theButton).appendTo(theUpperData).text(listContent[index].signs[i]).addClass("signs");
+$(theUpperData).children().eq(1).css({
+    "backgroundColor":"darkcyan",
+    "color":"lightcyan",
+    "borderRadius":"10px",
+})
+$(theUpperData).children().eq(2).css({
+    "backgroundColor":"black",
+    "color":"white",
+    "borderRadius":"10px",
+})
         }
 $(theMiddleData).appendTo(theDataContainer).addClass("mid align-items-center");
 $(theTitle).appendTo(theMiddleData).text(listContent[index].title);
 $(theLowerData).appendTo(theMiddleData).addClass("down align-items-end");
-$(theStatus).appendTo(theLowerData).text(listContent[index].status);
+$(theStatus).appendTo(theLowerData).text(listContent[index].status).css("color","darkgrey");
 $(theCardsContainer).appendTo(theDiv).addClass("buttons col-xl-5  col-md-12  align-self-center");
         for(let x=0 ;x<listContent[index].cards.length;x++){
             var theCards=document.createElement("button");
