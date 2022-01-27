@@ -1,4 +1,4 @@
-$(".up button").eq(0).css({
+/*$(".up button").eq(0).css({
     "backgroundColor":"darkcyan",
     "color":"lightcyan",
     "borderRadius":"10px",
@@ -7,7 +7,7 @@ $(".up button").eq(1).css({
     "backgroundColor":"black",
     "color":"white",
     "borderRadius":"10px",
-})
+})*/
 var listContent=[
             {
                 image:"imgs/photosnap.svg",
@@ -91,6 +91,51 @@ var listContent=[
             },
 ];
 
+
+
+
+
+
+
+$(document).ready(function(){
+        "use strict";
+        for (let index=0 ;index<listContent.length; index++){
+            
+            var theDiv=document.createElement("div"),
+            theImageContainer=document.createElement("div"),
+            theCardsContainer=document.createElement("div"),
+            theDataContainer=document.createElement("div"),
+            theUpperData=document.createElement("div"),
+            theMiddleData=document.createElement("div"),
+            theLowerData=document.createElement("div"),
+            
+            theImage=document.createElement("img"),
+            theTitle=document.createElement("h4"),
+            theName=document.createElement("p"),
+            theStatus=document.createElement("p");
+             
+$(theDiv).appendTo(".content-container").addClass("row list");
+$(theImageContainer).appendTo(theDiv).addClass("image-container col-xl-1  col-md-12 d-flex align-items-center").append(theImage);
+$(theImage).attr("src",listContent[index].image);
+$(theDataContainer).appendTo(theDiv).addClass("data col-xl-6 col-md-12 d-flex");
+$(theUpperData).appendTo(theDataContainer).addClass("up align-items-start");
+$(theName).appendTo(theUpperData).text(listContent[index].name);
+        for(let i=0; i<listContent[index].signs.length;i++){
+            var theButton=document.createElement("button"); 
+$(theButton).appendTo(theUpperData).text(listContent[index].signs[i]);
+        }
+$(theMiddleData).appendTo(theDataContainer).addClass("mid align-items-center");
+$(theTitle).appendTo(theMiddleData).text(listContent[index].title);
+$(theLowerData).appendTo(theMiddleData).addClass("down align-items-end");
+$(theStatus).appendTo(theLowerData).text(listContent[index].status);
+$(theCardsContainer).appendTo(theDiv).addClass("buttons col-xl-5  col-md-12  align-self-center");
+        for(let x=0 ;x<listContent[index].cards.length;x++){
+            var theCards=document.createElement("button");
+            $(theCards).appendTo(theCardsContainer).text(listContent[index].cards[x]);
+        }
+    }
+
+})
 
 
 
