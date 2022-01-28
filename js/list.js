@@ -116,7 +116,7 @@ $(document).ready(function(){
             var theClear=document.createElement("span");
              
 $(theRow).appendTo(".content-container").addClass("row list");
-$(theMenu).prependTo(theRow).hide().addClass("the-menu container col-xl-8 col-md-12");
+$(theMenu).prependTo(theRow).hide().addClass("the-menu container  col-12");
 $(theClear).appendTo(theMenu);
 for(let y=0 ;y<listContent[index].menu.length ; y++){
     var contentOfMenu=document.createElement("button");
