@@ -113,10 +113,19 @@ $(document).ready(function(){
             theName=document.createElement("p"),
             theStatus=document.createElement("p"),
             theMenu=document.createElement("div");
-            
+            var theClear=document.createElement("span");
              
 $(theRow).appendTo(".content-container").addClass("row list");
 $(theMenu).prependTo(theRow).hide().addClass("the-menu container col-xl-8 col-md-12");
+$(theClear).appendTo(theMenu);
+for(let y=0 ;y<listContent[index].menu.length ; y++){
+    var contentOfMenu=document.createElement("button");
+    $(contentOfMenu).prependTo(theMenu);
+    $(contentOfMenu).text(listContent[index].menu[y]).addClass("content-of-menu");
+}
+$(theClear).text("Exit").addClass("the-clear ms-auto").on("click",function(){
+            $(this).parent().hide();
+        });
 $(theImageContainer).appendTo(theRow).addClass("image-container col-xl-1  col-md-12 d-flex align-items-center").append(theImage);
 $(theImage).attr("src",listContent[index].image);
 $(theDataContainer).appendTo(theRow).addClass("data col-xl-6 col-md-12 d-flex");
@@ -151,21 +160,15 @@ $(theCardsContainer).appendTo(theRow).addClass("buttons col-xl-5  col-md-12  ali
 
 
 
+
+
+//the Menu
 $(document).ready(function(){
-    for(let index=0 ;index<listContent.length ; index++){
-        var theClear=document.createElement("span");
-        $(theClear).appendTo($(".the-menu").eq(index));
-        $(theClear).text("Exit").addClass("the-clear ms-auto").on("click",function(){
-            $(this).parent().hide();
-        });
-        $(".the-title").eq(index).on("click",function(){
-            for(let y=0 ;y<listContent[index].menu.length ; y++){
-                var contentOfMenu=document.createElement("button");
-                $(".the-menu").eq(index).show().prepend(contentOfMenu);
-                $(contentOfMenu).text(listContent[index].menu[y]).addClass("content-of-menu");
-            }
-        });
-    }
+for(let index=0;index<listContent.length;index++){
+    $(".the-title").eq(index).on("click",function(){
+           $(".the-menu").eq(index).show(); 
+    });
+}           
 })
 
 
