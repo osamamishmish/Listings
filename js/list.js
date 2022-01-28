@@ -6,6 +6,7 @@ var listContent=[
                 status:"1d ago .FullTime .USA only",
                 cards:["Frontend","Senior","HTML","CSS","Javascript"],
                 signs:["New!","Featured"],
+                menu:["Frontend","Senior","Javascript"],
             },
             {
                 image:"imgs/manage.svg",
@@ -14,6 +15,7 @@ var listContent=[
                 status:"1d ago .PartTime .Remote",
                 cards:["Fullstack","Midweight","Python","React"],
                 signs:["New!","Featured"],
+                menu:["Fullstack","Python","React"],
             },
             {
                 image:"imgs/account.svg",
@@ -22,6 +24,7 @@ var listContent=[
                 status:"2d ago .PartTime .USA only",
                 cards:["Frontend","Junior","React","Sass","Javascript"],
                 signs:["New!"],
+                menu:["Frontend","Junior","React"],
             },
             {
                 image:"imgs/myhome.svg",
@@ -30,6 +33,7 @@ var listContent=[
                 status: "5d ago .Contract .USA only",
                 cards:["frontend","Junior","Css","Javascript"],
                 signs:[],
+                menu:["Frontend","Junior","Javascript"],
             },
             {
                 image:"imgs/loop-studios.svg",
@@ -38,6 +42,7 @@ var listContent=[
                 status:"1w ago .FullTime .Worldwide",
                 cards:["Fullstack","Midweight","Javascript","Sass","Ruby"],
                 signs:[],
+                menu:["FullStack","Sass","Javascript"],
             },
             {
                 image:"imgs/faceit.svg",
@@ -46,6 +51,7 @@ var listContent=[
                 status:"2w ago .FullTime .UK only",
                 cards:["backend","Junior","Ruby","RoR"],
                 signs:[],
+                menu:["Backend","Junior"],
             },
             {
                 image:"imgs/shortly.svg",
@@ -54,6 +60,7 @@ var listContent=[
                 status:"2w ago .FullTime .Worldwide",
                 cards:["Frontend","Junior","HTML","Sass","Javascript"],
                 signs:[],
+                menu:["Frontend","Junior","Javascript"],
             },
             {
                 image:"imgs/insure.svg",
@@ -62,6 +69,7 @@ var listContent=[
                 status:"2w ago .FullTime .USA only",
                 cards:["Frontend","Junior","Vue","Javascript","Sass"],
                 signs:[],
+                menu:["Frontend","Junior","Javascript"],
             },
             {
                 image:"imgs/eyecam-co.svg",
@@ -70,6 +78,7 @@ var listContent=[
                 status:"3w ago .FullTime .Worldwide",
                 cards:["Fullstack","Mideight","Javascript","Django","Python"],
                 signs:[],
+                menu:["FullStack","Python","Javascript"],
             },
             {
                 image:"imgs/the-air-filter-company.svg",
@@ -78,6 +87,7 @@ var listContent=[
                 status:"1m ago .PartTime .Worldwide",
                 cards:["Frontend","Junior","React","Sass","Javascript"],
                 signs:[],
+                menu:["Frontend","Junior","React"],
             },
 ];
 
@@ -91,7 +101,7 @@ $(document).ready(function(){
         "use strict";
         for (let index=0 ;index<listContent.length; index++){
             
-            var theDiv=document.createElement("div"),
+            var theRow=document.createElement("div"),
             theImageContainer=document.createElement("div"),
             theCardsContainer=document.createElement("div"),
             theDataContainer=document.createElement("div"),
@@ -101,12 +111,15 @@ $(document).ready(function(){
             theImage=document.createElement("img"),
             theTitle=document.createElement("h4"),
             theName=document.createElement("p"),
-            theStatus=document.createElement("p");
+            theStatus=document.createElement("p"),
+            theMenu=document.createElement("div");
+            
              
-$(theDiv).appendTo(".content-container").addClass("row list");
-$(theImageContainer).appendTo(theDiv).addClass("image-container col-xl-1  col-md-12 d-flex align-items-center").append(theImage);
+$(theRow).appendTo(".content-container").addClass("row list");
+$(theMenu).prependTo(theRow).hide().addClass("the-menu container col-xl-8 col-md-12");
+$(theImageContainer).appendTo(theRow).addClass("image-container col-xl-1  col-md-12 d-flex align-items-center").append(theImage);
 $(theImage).attr("src",listContent[index].image);
-$(theDataContainer).appendTo(theDiv).addClass("data col-xl-6 col-md-12 d-flex");
+$(theDataContainer).appendTo(theRow).addClass("data col-xl-6 col-md-12 d-flex");
 $(theUpperData).appendTo(theDataContainer).addClass("up align-items-start");
 $(theName).appendTo(theUpperData).text(listContent[index].name);
         for(let i=0; i<listContent[index].signs.length;i++){
@@ -124,10 +137,10 @@ $(theUpperData).children().eq(2).css({
 })
         }
 $(theMiddleData).appendTo(theDataContainer).addClass("mid align-items-center");
-$(theTitle).appendTo(theMiddleData).text(listContent[index].title);
+$(theTitle).appendTo(theMiddleData).text(listContent[index].title).addClass("the-title");
 $(theLowerData).appendTo(theMiddleData).addClass("down align-items-end");
 $(theStatus).appendTo(theLowerData).text(listContent[index].status).css("color","darkgrey");
-$(theCardsContainer).appendTo(theDiv).addClass("buttons col-xl-5  col-md-12  align-self-center");
+$(theCardsContainer).appendTo(theRow).addClass("buttons col-xl-5  col-md-12  align-self-center");
         for(let x=0 ;x<listContent[index].cards.length;x++){
             var theCards=document.createElement("button");
             $(theCards).appendTo(theCardsContainer).text(listContent[index].cards[x]);
@@ -138,7 +151,22 @@ $(theCardsContainer).appendTo(theDiv).addClass("buttons col-xl-5  col-md-12  ali
 
 
 
-
+$(document).ready(function(){
+    for(let index=0 ;index<listContent.length ; index++){
+        var theClear=document.createElement("span");
+        $(theClear).appendTo($(".the-menu").eq(index));
+        $(theClear).text("Exit").addClass("the-clear ms-auto").on("click",function(){
+            $(this).parent().hide();
+        });
+        $(".the-title").eq(index).on("click",function(){
+            for(let y=0 ;y<listContent[index].menu.length ; y++){
+                var contentOfMenu=document.createElement("button");
+                $(".the-menu").eq(index).show().prepend(contentOfMenu);
+                $(contentOfMenu).text(listContent[index].menu[y]).addClass("content-of-menu");
+            }
+        });
+    }
+})
 
 
 
